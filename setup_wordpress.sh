@@ -13,17 +13,17 @@ cat xx00 salts xx02 > wordpress/wp-config.php
 rm salts xx00 xx01 xx02
 
 # Configure db using env
-dbhost=${DEPLOY_ENV-localhost}
-dbname=${DEPLOY_ENV-db}
-dbuser=${DEPLOY_ENV-root}
-dbpass=${DEPLOY_ENV-}
+dbhost=${WORDPRESS_DB_HOST-localhost}
+dbname=${WORDPRESS_DB_NAME-db}
+dbuser=${WORDPRESS_DB_USER-root}
+dbpass=${WORDPRESS_DB_PASS-}
 
 sed -i "s/localhost/$dbhost/g" wp-config.php
 sed -i "s/database_name_here/$dbname/g" wp-config.php
 sed -i "s/username_here/$dbuser/g" wp-config.php
 sed -i "s/password_here/$dbpass/g" wp-config.php
 
-domain=${DOMAIN_NAME-public}
+domain=${WORDPRESS_DOMAIN_NAME-public}
 mkdir wordpress/wp-content/upgrade
 mkdir -p /home/www/wordpress/$domain
 cp -a wordpress/. /home/www/wordpress/$domain
