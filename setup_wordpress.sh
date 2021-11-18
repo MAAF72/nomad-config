@@ -18,10 +18,10 @@ dbname=${WORDPRESS_DB_NAME-db}
 dbuser=${WORDPRESS_DB_USER-root}
 dbpass=${WORDPRESS_DB_PASS-}
 
-sed -i "s/localhost/$dbhost/g" wp-config.php
-sed -i "s/database_name_here/$dbname/g" wp-config.php
-sed -i "s/username_here/$dbuser/g" wp-config.php
-sed -i "s/password_here/$dbpass/g" wp-config.php
+sed -i "s/localhost/$dbhost/g" wordpress/wp-config.php
+sed -i "s/database_name_here/$dbname/g" wordpress/wp-config.php
+sed -i "s/username_here/$dbuser/g" wordpress/wp-config.php
+sed -i "s/password_here/$dbpass/g" wordpress/wp-config.php
 
 domain=${WORDPRESS_DOMAIN_NAME-public}
 mkdir wordpress/wp-content/upgrade
