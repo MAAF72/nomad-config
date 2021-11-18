@@ -23,10 +23,11 @@ sed -i "s/database_name_here/$dbname/g" wp-config.php
 sed -i "s/username_here/$dbuser/g" wp-config.php
 sed -i "s/password_here/$dbpass/g" wp-config.php
 
+domain=${DOMAIN_NAME-public}
 mkdir wordpress/wp-content/upgrade
-mkdir -p /home/www/wordpress/slave.test.paas.proclubstudio.com
-cp -a wordpress/. /home/www/wordpress/slave.test.paas.proclubstudio.com
+mkdir -p /home/www/wordpress/$domain
+cp -a wordpress/. /home/www/wordpress/$domain
 rm -rf wordpress
-chown -R www-data:www-data /home/www/wordpress/slave.test.paas.proclubstudio.com
-find /home/www/wordpress/slave.test.paas.proclubstudio.com -type d -exec chmod 750 {} \;
-find /home/www/wordpress/slave.test.paas.proclubstudio.com -type f -exec chmod 640 {} \;
+chown -R www-data:www-data /home/www/wordpress/$domain
+find /home/www/wordpress/$domain -type d -exec chmod 750 {} \;
+find /home/www/wordpress/$domain -type f -exec chmod 640 {} \;
