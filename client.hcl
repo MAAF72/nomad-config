@@ -1,19 +1,19 @@
-data_dir = "{{NOMAD_DIR}}"
+data_dir = "||NOMAD_DIR||"
 bind_addr = "0.0.0.0"
 
 advertise {
-  http = "{{ADVERTISE_HTTP_ADDR}}"
-  rpc  = "{{ADVERTISE_RPC_ADDR}}"
-  serf = "{{ADVERTISE_SERF_ADDR}}"
+  http = "||ADVERTISE_HTTP_ADDR||"
+  rpc  = "||ADVERTISE_RPC_ADDR||"
+  serf = "||ADVERTISE_SERF_ADDR||"
 }
 
 client {
   enabled = true
   meta {
-    name = "{{CLIENT_NAME}}"
+    name = "||CLIENT_NAME||"
   }
 
-  servers = ["{{CLIENT_SERVER_ADDR_1}}"]
+  servers = ["||CLIENT_SERVER_ADDR_1||"]
 }
 
 plugin "raw_exec" {
