@@ -1,8 +1,12 @@
 #!/usr/bin/bash
 
-LARAVEL_DIR=$APPLICATION_DIR/www/${APPLICATION_ADDRESS-public}
+LARAVEL_DIR=/var/www/${LARAVEL_DOMAIN_NAME-public}
 
-rm -rfv $APPLICATION_DIR/www/{*,.*}
-composer.phar create-project --prefer-dist laravel/laravel $LARAVEL_DIR
+if test -n "${LARAVEL_DOMAIN_NAME-}"; then
+    LARAVEL_DIR=$LARAVEL_DIR/public
+fi
+
+mkdir -p $LARAVEL_DIR
+composer create-project --prefer-dist laravel/laravel $LARAVEL_DIR
 chown -R www-data.www-data $LARAVEL_DIR/storage
 chown -R www-data.www-data $LARAVEL_DIR/bootstrap/cache
