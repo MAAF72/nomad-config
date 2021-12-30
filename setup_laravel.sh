@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-LARAVEL_DIR=/var/www/${LARAVEL_DOMAIN_NAME-public}
+LARAVEL_DIR=/var/www/${LARAVEL_DOMAIN_NAME-}
 
 if test -n "${LARAVEL_DOMAIN_NAME-}"; then
     LARAVEL_DIR=$LARAVEL_DIR/public
