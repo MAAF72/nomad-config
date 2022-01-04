@@ -1,6 +1,20 @@
 #!/usr/bin/bash
 
-cd /tmp
+WORDPRESS_DIR=$APPLICATION_DIR/www
+
+if test -n "${WORDPRESS_DOMAIN_NAME-}"; then
+    WORDPRESS_DIR=$WORDPRESS_DIR/$WORDPRESS_DOMAIN_NAME/public
+else
+    WORDPRESS_DIR=$WORDPRESS_DIR/public
+fi
+
+mkdir -p $WORDPRESS_DIR
+
+cd $WORDPRESS_DIR
+
+mkdir -p tmp
+cd tmp
+
 curl -O https://wordpress.org/latest.tar.gz
 tar xzvf latest.tar.gz
 touch wordpress/.htaccess
@@ -13,21 +27,15 @@ cat xx00 salts xx02 > wordpress/wp-config.php
 rm salts xx00 xx01 xx02
 
 # Configure db using env
-dbhost=${WORDPRESS_DB_HOST-localhost}
-dbname=${WORDPRESS_DB_NAME-db}
-dbuser=${WORDPRESS_DB_USER-root}
-dbpass=${WORDPRESS_DB_PASS-}
+sed -i "s/localhost/${WORDPRESS_DB_HOST-localhost}/g" wordpress/wp-config.php
+sed -i "s/database_name_here/${WORDPRESS_DB_NAME-db}/g" wordpress/wp-config.php
+sed -i "s/username_here/${WORDPRESS_DB_USER-root}/g" wordpress/wp-config.php
+sed -i "s/password_here/${WORDPRESS_DB_PASS-}/g" wordpress/wp-config.php
 
-sed -i "s/localhost/$dbhost/g" wordpress/wp-config.php
-sed -i "s/database_name_here/$dbname/g" wordpress/wp-config.php
-sed -i "s/username_here/$dbuser/g" wordpress/wp-config.php
-sed -i "s/password_here/$dbpass/g" wordpress/wp-config.php
-
-domain=${WORDPRESS_DOMAIN_NAME-public}
 mkdir wordpress/wp-content/upgrade
-mkdir -p /home/www/wordpress/$domain
-cp -a wordpress/. /home/www/wordpress/$domain
-rm -rf wordpress
-chown -R www-data:www-data /home/www/wordpress/$domain
-find /home/www/wordpress/$domain -type d -exec chmod 750 {} \;
-find /home/www/wordpress/$domain -type f -exec chmod 640 {} \;
+
+cp -a wordpress/. $WORDPRESS_DIR
+rm -rf tmp
+chown -R www-data:www-data $WORDPRESS_DIR
+find $WORDPRESS_DIR -type d -exec chmod 750 {} \;
+find $WORDPRESS_DIR -type f -exec chmod 640 {} \;
