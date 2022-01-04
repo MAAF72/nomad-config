@@ -30,7 +30,7 @@ rm salts xx00 xx01 xx02
 sed -i "s/localhost/${WORDPRESS_DB_HOST-localhost}/g" wordpress/wp-config.php
 sed -i "s/database_name_here/${WORDPRESS_DB_NAME-db}/g" wordpress/wp-config.php
 sed -i "s/username_here/${WORDPRESS_DB_USER-root}/g" wordpress/wp-config.php
-sed -i "s/password_here/${WORDPRESS_DB_PASS-}/g" wordpress/wp-config.php
+sed -i "s/password_here/${WORDPRESS_DB_PASSWORD-}/g" wordpress/wp-config.php
 
 mkdir wordpress/wp-content/upgrade
 
