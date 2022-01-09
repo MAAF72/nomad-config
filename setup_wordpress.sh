@@ -1,19 +1,11 @@
 #!/usr/bin/bash
 
-WORDPRESS_DIR=$APPLICATION_DIR/www
-
-if test -n "${WORDPRESS_DOMAIN_NAME-}"; then
-    WORDPRESS_DIR=$WORDPRESS_DIR/$WORDPRESS_DOMAIN_NAME/public
-else
-    WORDPRESS_DIR=$WORDPRESS_DIR/public
-fi
-
-mkdir -p $WORDPRESS_DIR
+WORDPRESS_DIR=$APPLICATION_DIR/www/public
 
 cd $WORDPRESS_DIR
 
-mkdir -p tmp
-cd tmp
+mkdir -p wordpress_tmp
+cd wordpress_tmp
 
 curl -O https://wordpress.org/latest.tar.gz
 tar xzvf latest.tar.gz
@@ -32,10 +24,10 @@ sed -i "s/database_name_here/${WORDPRESS_DB_NAME-db}/g" wordpress/wp-config.php
 sed -i "s/username_here/${WORDPRESS_DB_USER-root}/g" wordpress/wp-config.php
 sed -i "s/password_here/${WORDPRESS_DB_PASSWORD-}/g" wordpress/wp-config.php
 
-mkdir wordpress/wp-content/upgrade
+mkdir -p wordpress/wp-content/upgrade
 
 cp -a wordpress/. $WORDPRESS_DIR
-rm -rf tmp
+rm -rf wordpress_tmp
 chown -R www-data:www-data $WORDPRESS_DIR
 find $WORDPRESS_DIR -type d -exec chmod 750 {} \;
 find $WORDPRESS_DIR -type f -exec chmod 640 {} \;
