@@ -7,11 +7,11 @@ sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN-_}!g" reverse_proxy
 sed -i "s!||PROXY_ADDRESS||!http://$PROXY_ADDRESS:$PROXY_PORT!g" reverse_proxy
 
 if test -f "/etc/nginx/sites-enabled/default"; then
-    sudo rm  /etc/nginx/sites-enabled/default
+    sudo rm /etc/nginx/sites-enabled/default
 fi
 
 if test -f "/etc/nginx/sites-available/default"; then
-    sudo rm  /etc/nginx/sites-available/default
+    sudo rm /etc/nginx/sites-available/default
 fi
 
 sudo cp reverse_proxy /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN
