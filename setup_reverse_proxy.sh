@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-
+id
 sudo ufw allow $WEB_APP_PORT/tcp
 curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/reverse_proxy
 sed -i "s!||WEB_APP_PORT||!$WEB_APP_PORT!g" reverse_proxy
