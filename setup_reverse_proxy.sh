@@ -14,7 +14,7 @@ if test -f "/etc/nginx/sites-available/default"; then
     sudo rm /etc/nginx/sites-available/default
 fi
 
-sudo cp reverse_proxy /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN
-sudo ln -s /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN /etc/nginx/sites-enabled
+sudo cp reverse_proxy /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:${WEB_APP_DOMAIN-_}
+sudo ln -s /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:${WEB_APP_DOMAIN-_} /etc/nginx/sites-enabled
 rm reverse_proxy
 sudo nginx -s reload
