@@ -1,22 +1,27 @@
 #!/usr/bin/bash
-
 id
 id nomad
-ufw allow $WEB_APP_PORT/tcp
+sudo ufw allow $WEB_APP_PORT/tcp
+echo "1"
 curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/reverse_proxy
+echo "2"
 sed -i "s!||WEB_APP_PORT||!$WEB_APP_PORT!g" reverse_proxy
 sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN-_}!g" reverse_proxy
 sed -i "s!||PROXY_ADDRESS||!http://$PROXY_ADDRESS:$PROXY_PORT!g" reverse_proxy
+echo "3"
 
 if test -f "/etc/nginx/sites-enabled/default"; then
-    rm /etc/nginx/sites-enabled/default
+    sudo rm /etc/nginx/sites-enabled/default
 fi
-
+echo "4"
 if test -f "/etc/nginx/sites-available/default"; then
-    rm /etc/nginx/sites-available/default
+    sudo rm /etc/nginx/sites-available/default
 fi
-
-cp reverse_proxy /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN
-ln -s /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN /etc/nginx/sites-enabled
+echo "5"
+sudo cp reverse_proxy /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN
+echo "6"
+sudo ln -s /etc/nginx/sites-available/reverse_proxy_$PROXY_ADDRESS:$PROXY_PORT:$WEB_APP_DOMAIN /etc/nginx/sites-enabled
+echo "7"
 rm reverse_proxy
-nginx -s reload
+sudo nginx -s reload
+echo "8"
