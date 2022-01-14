@@ -2,6 +2,8 @@
 
 export
 
+CFG_NAME= rp_${APPLICATION_ID--}_${WEB_APP_DOMAIN--}
+
 sudo ufw allow ${WEB_APP_PORT-80}/tcp
 curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/reverse_proxy
 sed -i "s!||WEB_APP_PORT||!${WEB_APP_POR-80}!g" reverse_proxy
@@ -16,7 +18,15 @@ if test -f "/etc/nginx/sites-available/default"; then
     sudo rm /etc/nginx/sites-available/default
 fi
 
-sudo cp reverse_proxy /etc/nginx/sites-available/rp_${APPLICATION_ID--}_${WEB_APP_DOMAIN--}
-sudo ln -s /etc/nginx/sites-available/rp_${APPLICATION_ID--}_${WEB_APP_DOMAIN--} /etc/nginx/sites-enabled/
+if test -f "/etc/nginx/sites-enabled/$CFG_NAME"; then
+    sudo rm /etc/nginx/sites-enabled/$CFG_NAME
+fi
+
+if test -f "/etc/nginx/sites-available/$CFG_NAME"; then
+    sudo rm /etc/nginx/sites-available/$CFG_NAME
+fi
+
+sudo cp reverse_proxy /etc/nginx/sites-available/$CFG_NAME
+sudo ln -s /etc/nginx/sites-available/$CFG_NAME /etc/nginx/sites-enabled/
 rm reverse_proxy
 sudo nginx -s reload
