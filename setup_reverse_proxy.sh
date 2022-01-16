@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
-export
-
+DEFAULT_CFG_NAME=rp_${APPLICATION_ID--}_-
 CFG_NAME=rp_${APPLICATION_ID--}_${WEB_APP_DOMAIN--}
 
 sudo ufw allow ${WEB_APP_PORT-80}/tcp
@@ -16,6 +15,14 @@ fi
 
 if test -f "/etc/nginx/sites-available/default"; then
     sudo rm /etc/nginx/sites-available/default
+fi
+
+if test -f "/etc/nginx/sites-enabled/$DEFAULT_CFG_NAME"; then
+    sudo rm /etc/nginx/sites-enabled/$DEFAULT_CFG_NAME
+fi
+
+if test -f "/etc/nginx/sites-available/$DEFAULT_CFG_NAME"; then
+    sudo rm /etc/nginx/sites-available/$DEFAULT_CFG_NAME
 fi
 
 if test -f "/etc/nginx/sites-enabled/$CFG_NAME"; then
