@@ -1,9 +1,17 @@
 #!/usr/bin/bash
 
-CONFIG_FILE=/etc/letsencrypt/live/$WEB_APP_DOMAIN.conf
+CB_CFG_FILE=/etc/letsencrypt/renewal/$WEB_APP_DOMAIN.conf
+
+if test -f "$CB_CFG_FILE.disabled"; then
+    sudo mv $CB_CFG_FILE.disabled $CB_CFG_FILE
+fi
+
+if test -f "$CB_CFG_FILE"; then
+    sudo certbot delete --cert-name $WEB_APP_DOMAIN
+fi
 
 sudo certbot --nginx --non-interactive --agree-tos -m $CERTBOT_EMAIL -d $WEB_APP_DOMAIN
 
-if test -f "$CONFIG_FILE"; then
-    sudo mv $CONFIG_FILE $CONFIG_FILE.disabled
+if test -f "$CB_CFG_FILE"; then
+    sudo mv $CB_CFG_FILE $CB_CFG_FILE.disabled
 fi

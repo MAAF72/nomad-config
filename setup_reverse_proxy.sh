@@ -36,4 +36,4 @@ fi
 sudo cp reverse_proxy /etc/nginx/sites-available/$CFG_NAME
 sudo ln -s /etc/nginx/sites-available/$CFG_NAME /etc/nginx/sites-enabled/
 rm reverse_proxy
-sudo nginx -s reload
+sudo nginx -t && sudo nginx -s reload

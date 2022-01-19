@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
-CONFIG_FILE=/etc/letsencrypt/live/$WEB_APP_DOMAIN.conf
+CB_CFG_FILE=/etc/letsencrypt/renewal/$WEB_APP_DOMAIN.conf
 
-if test -f "$CONFIG_FILE.disabled"; then
-    sudo mv $CONFIG_FILE.disabled $CONFIG_FILE
+if test -f "$CB_CFG_FILE.disabled"; then
+    sudo mv $CB_CFG_FILE.disabled $CB_CFG_FILE
 fi
 
 sudo certbot certonly --nginx --non-interactive -d $WEB_APP_DOMAIN --force-renewal
