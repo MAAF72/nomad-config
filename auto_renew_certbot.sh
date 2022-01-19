@@ -1,12 +1,9 @@
 #!/usr/bin/bash
 
-CERTBOT_NAME=cb_${APPLICATION_ID--}_${WEB_APP_DOMAIN--}
-sudo certbot --nginx certonly --non-interactive -d $WEB_APP_DOMAIN --force-renewal
+CONFIG_FILE=/etc/letsencrypt/live/$WEB_APP_DOMAIN.conf
 
-sudo nginx -t && sudo nginx -s reload
-
-crontab -l
-
-if test -f "/etc/cron.d/certbot"; then
-    sudo cat /etc/cron.d/certbot
+if test -f "$CONFIG_FILE.disabled"; then
+    sudo mv $CONFIG_FILE.disabled $CONFIG_FILE
 fi
+
+sudo certbot certonly --nginx --non-interactive -d $WEB_APP_DOMAIN --force-renewal
