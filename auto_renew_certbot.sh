@@ -8,7 +8,7 @@ curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-confi
 if test -f "$CB_CFG_FILE.disabled"; then
     sudo mv $CB_CFG_FILE.disabled $CB_CFG_FILE
 
-    sudo certbot certonly --nginx --non-interactive -d $WEB_APP_DOMAIN --force-renewal
+    sudo certbot certonly --force-renewal --nginx --non-interactive -d $WEB_APP_DOMAIN 
     rc=$?
     echo "creating ssl log"
     python3 create-ssl-log.py --endpoint $CREATE_SSL_LOG_ENDPOINT --domain-id $DOMAIN_ID --exit-code $rc
