@@ -13,8 +13,9 @@ if test -f "$CB_CFG_FILE"; then
 fi
 
 sudo certbot --nginx --non-interactive --agree-tos -m $CERTBOT_EMAIL -d $WEB_APP_DOMAIN
-
-python3 create-ssl-log.py --endpoint $CREATE_SSL_LOG_ENDPOINT --domain-id $DOMAIN_ID --exit-code $?
+rc=$?
+echo "creating ssl log"
+python3 create-ssl-log.py --endpoint $CREATE_SSL_LOG_ENDPOINT --domain-id $DOMAIN_ID --exit-code $rc
 
 if test -f "$CB_CFG_FILE"; then
     sudo mv $CB_CFG_FILE $CB_CFG_FILE.disabled
