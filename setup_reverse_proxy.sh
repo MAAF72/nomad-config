@@ -8,6 +8,7 @@ curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-confi
 sed -i "s!||WEB_APP_PORT||!${WEB_APP_PORT-80}!g" reverse_proxy
 sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN-_}!g" reverse_proxy
 sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}!g" reverse_proxy
+sed -i "s!||APPLICATION_NAME||!${APPLICATION_NAME-}!g" reverse_proxy
 
 if test -f "/etc/nginx/sites-enabled/default"; then
     sudo rm /etc/nginx/sites-enabled/default
