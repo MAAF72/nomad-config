@@ -1,8 +1,7 @@
 #!/usr/bin/bash
 
-WORDPRESS_DIR=$APPLICATION_DIR/www/public
-
-cd $WORDPRESS_DIR
+mkdir -p $APPLICATION_DIR
+cd $APPLICATION_DIR
 
 mkdir -p wordpress_tmp
 cd wordpress_tmp
@@ -26,8 +25,11 @@ sed -i "s/password_here/${WORDPRESS_DB_PASSWORD-}/g" wordpress/wp-config.php
 
 mkdir -p wordpress/wp-content/upgrade
 
-cp -a wordpress/. $WORDPRESS_DIR
+cp -a wordpress/. $APPLICATION_DIR
+
+cd $APPLICATION_DIR
+
 rm -rf wordpress_tmp
-chown -R www-data:www-data $WORDPRESS_DIR
-find $WORDPRESS_DIR -type d -exec chmod 750 {} \;
-find $WORDPRESS_DIR -type f -exec chmod 640 {} \;
+chown -R www-data:www-data $APPLICATION_DIR
+find $APPLICATION_DIR -type d -exec chmod 750 {} \;
+find $APPLICATION_DIR -type f -exec chmod 640 {} \;
