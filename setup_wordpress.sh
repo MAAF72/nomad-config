@@ -30,6 +30,6 @@ cp -a wordpress/. $APPLICATION_DIR
 cd $APPLICATION_DIR
 
 rm -rf wordpress_tmp
-chown -R www-data:www-data $APPLICATION_DIR
-find $APPLICATION_DIR -type d -exec chmod 750 {} \;
-find $APPLICATION_DIR -type f -exec chmod 640 {} \;
+sudo chown -R www-data:www-data $APPLICATION_DIR
+sudo find $APPLICATION_DIR -type d -exec chmod 750 {} \;
+sudo find $APPLICATION_DIR -type f -exec chmod 640 {} \;
