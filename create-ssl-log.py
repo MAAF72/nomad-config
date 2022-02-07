@@ -26,7 +26,8 @@ while True:
     resp = requests.post(args.endpoint, json=body)
 
     if resp.ok:
-        print(f'{current_time} => {resp.json()}')
+        print(f'SUCCESS {current_time} => {resp.json()}')
         break
     else:
+        print(f'FAILED {current_time} => {resp.json()}')
         time.sleep(2 * 60) # Sleep for 2 minutes

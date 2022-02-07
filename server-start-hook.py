@@ -18,4 +18,5 @@ while True:
         print(f'{current_time} => {resp.json()}')
         break
     else:
-        time.sleep(2 * 60) # Sleep for 10 minutes
+        print(f'FAILED {current_time} => {resp.json()}')
+        time.sleep(2 * 60) # Sleep for 2 minutes
