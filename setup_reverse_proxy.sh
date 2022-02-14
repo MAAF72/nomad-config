@@ -11,13 +11,17 @@ if ( test "${ENABLE_WWW-false}" = true ) && ( test -n "${WEB_APP_DOMAIN-}" ); th
     sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN} www.${WEB_APP_DOMAIN}!g" reverse_proxy
 else
     sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN-_}!g" reverse_proxy
-fi
+fis
 
 if test -n "${APPLICATION_DIR-}"; then
-    sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/${APPLICATION_DIR-}!g" reverse_proxy
+    sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/${APPLICATION_DIR-}/!g" reverse_proxy
+    sed -i "s!||ENABLE_PROXY_REDIRECT||!# !g" reverse_proxy
 else
-    sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}!g" reverse_proxy
+    sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/!g" reverse_proxy
+    sed -i "s!||ENABLE_PROXY_REDIRECT||!!g" reverse_proxy
 fi
+
+sed -i "s!||APPLICATION_DIR||!${APPLICATION_DIR-}!g" reverse_proxy
 
 if test -f "/etc/nginx/sites-enabled/default"; then
     sudo rm /etc/nginx/sites-enabled/default

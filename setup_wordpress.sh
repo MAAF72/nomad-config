@@ -17,6 +17,12 @@ csplit wordpress/wp-config.php '/AUTH_KEY/' '/NONCE_SALT/+1'
 cat xx00 salts xx02 > wordpress/wp-config.php
 rm salts xx00 xx01 xx02
 
+# Configure custom wp-config
+curl "https://raw.githubusercontent.com/MAAF72/nomad-config/master/custom-wp-config.php" -o custom-wp-config.php
+csplit wordpress/wp-config.php '/Add any custom values between this line and the "stop editing" line./+1' "/That's all, stop editing! Happy publishing./-1"
+cat xx00 custom-wp-config.php xx02 > wordpress/wp-config.php
+rm xx00 xx01 xx02 custom-wp-config.php
+
 # Configure db using env
 sed -i "s/localhost/${WORDPRESS_DB_HOST-localhost}/g" wordpress/wp-config.php
 sed -i "s/database_name_here/${WORDPRESS_DB_NAME-db}/g" wordpress/wp-config.php
