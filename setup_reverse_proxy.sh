@@ -11,7 +11,7 @@ if ( test "${ENABLE_WWW-false}" = true ) && ( test -n "${WEB_APP_DOMAIN-}" ); th
     sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN} www.${WEB_APP_DOMAIN}!g" reverse_proxy
 else
     sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN-_}!g" reverse_proxy
-fis
+fi
 
 if test -n "${APPLICATION_DIR-}"; then
     sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/${APPLICATION_DIR-}/!g" reverse_proxy

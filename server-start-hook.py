@@ -12,11 +12,15 @@ while True:
     t = time.localtime()
     current_time = time.strftime("%d/%m/%Y %H:%M:%S", t)
     
-    resp = requests.get(args.endpoint, { 'api-key': args.api_key })
+    try:
+        resp = requests.get(args.endpoint, { 'api-key': args.api_key })
 
-    if resp.ok:
-        print(f'{current_time} => {resp.json()}')
-        break
-    else:
-        print(f'FAILED {current_time} => {resp.json()}')
-        time.sleep(2 * 60) # Sleep for 2 minutes
+        if resp.ok:
+            print(f'{current_time} => {resp.json()}')
+            break
+        else:
+            print(f'FAILED {current_time} => {resp.json()}')
+    except Exception as e:
+        print(f'ERROR {current_time} => {e}')
+        
+    time.sleep(2 * 60) # Sleep for 2 minutes
