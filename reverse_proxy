@@ -17,7 +17,7 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-Host  $host;
 
-        ||ENABLE_PROXY_REDIRECT||proxy_redirect                     http://||WEP_APP_DOMAIN||/||APPLICATION_DIR||    http://||WEP_APP_DOMAIN||;
-        ||ENABLE_PROXY_REDIRECT||proxy_redirect                     https://||WEP_APP_DOMAIN||/||APPLICATION_DIR||   https://||WEP_APP_DOMAIN||;
+        ||ENABLE_PROXY_REDIRECT||proxy_redirect                     http://||WEB_APP_DOMAIN||/||APPLICATION_DIR||    http://||WEB_APP_DOMAIN||;
+        ||ENABLE_PROXY_REDIRECT||proxy_redirect                     https://||WEB_APP_DOMAIN||/||APPLICATION_DIR||   https://||WEB_APP_DOMAIN||;
     }
 }
