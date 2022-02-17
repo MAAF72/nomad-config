@@ -10,7 +10,7 @@ sed -i "s!||APPLICATION_NAME||!${APPLICATION_NAME-}!g" nginx_web_config_applicat
 sed -i "s!||APPLICATION_MAIN_DIR||!${APPLICATION_MAIN_DIR-}!g" nginx_web_config_application
 
 # Rewrite web server config
-csplit $WEB_SERVER_DEFAULT_CONFIG '/# START: CONFIG_NGINX #/+2' "/# END: CONFIG_NGINX #/-2"
+csplit $WEB_SERVER_DEFAULT_CONFIG '/# START: CONFIG_NGINX #/+1' "/# END: CONFIG_NGINX #/-1"
 cat xx00 nginx_web_config_application xx01 xx02 > $WEB_SERVER_DEFAULT_CONFIG
 
 -----> NAH, INI RESTART NGINXNYA GIMANA BGSD???
