@@ -1,3 +1,4 @@
+
     # START: CONFIG_NGINX_||APPLICATION_ID|| #
 
     location /||APPLICATION_NAME|| {
