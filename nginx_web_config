@@ -1,4 +1,4 @@
-# DONT EDIT NOR DELETE ANY COMMENT HERE
+# DONT EDIT NOR DELETE ANY COMMENT HERE #
 
 server {
     listen 80 default_server;
@@ -14,7 +14,7 @@ server {
         try_files $uri $uri/ =404;
     }
     
-    # START: CONFIG_NGINX
+    # START: CONFIG_NGINX #
 
-    # END: CONFIG_NGINX
+    # END: CONFIG_NGINX #
 }

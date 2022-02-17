@@ -1,12 +1,12 @@
-    # START: CONFIG_NGINX_||APPLICATION_ID||
+    # START: CONFIG_NGINX_||APPLICATION_ID|| #
 
     location /||APPLICATION_NAME|| {
-        alias /var/www/||APPLICATION_MAIN_DIR||;
+        alias ||APPLICATION_MAIN_DIR||;
         
         try_files $uri $uri/ @||APPLICATION_NAME||;
 
         location ~ \.php$ {
-            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_||APPLICATION_ID||
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_||APPLICATION_ID|| #
             fastcgi_index index.php;
             fastcgi_param SCRIPT_FILENAME $request_filename;
             include fastcgi_params;
@@ -17,4 +17,4 @@
         rewrite /||APPLICATION_NAME||/(.*)$ /||APPLICATION_NAME||/index.php?/$1 last;
     }
 
-    # END: CONFIG_NGINX_||APPLICATION_ID||
+    # END: CONFIG_NGINX_||APPLICATION_ID|| #
