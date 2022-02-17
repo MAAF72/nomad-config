@@ -1,0 +1,20 @@
+# DONT EDIT NOR DELETE ANY COMMENT HERE
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/public;
+
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    
+    # START: CONFIG_NGINX
+
+    # END: CONFIG_NGINX
+}
