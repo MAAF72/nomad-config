@@ -3,6 +3,8 @@
 mkdir -p $APPLICATION_DIR
 cd $APPLICATION_DIR
 
+mkdir -p public
+
 mkdir -p wordpress_tmp
 cd wordpress_tmp
 
@@ -31,7 +33,7 @@ sed -i "s/password_here/${WORDPRESS_DB_PASSWORD-}/g" wordpress/wp-config.php
 
 mkdir -p wordpress/wp-content/upgrade
 
-cp -a wordpress/. $APPLICATION_DIR
+cp -a wordpress/. $APPLICATION_DIR/public
 
 cd $APPLICATION_DIR
 
