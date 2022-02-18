@@ -1,10 +1,9 @@
 #!/usr/bin/bash
-WEB_SERVER_DIR=/home/workspace/web-server/
 
 # Installing default nginx web config for container
 curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/nginx_web_config
 
-mkdir -p $WEB_SERVER_DIR/sites-available/default
+mkdir -p $WEB_SERVER_DIR/sites-available
 cp nginx_default_web_config $WEB_SERVER_DIR/sites-available/default
 
 # Installing default nginx web config for ingress

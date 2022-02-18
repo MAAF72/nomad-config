@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-WEB_SERVER_DEFAULT_CONFIG=/home/workspace/web-server/sites-available/default
 
 # Installing default nginx web config for ingress
 curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/nginx_web_config_application
