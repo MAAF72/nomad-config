@@ -6,7 +6,7 @@ server {
 
     root /var/www/public;
 
-    index index.html index.htm;
+    index index.html index.htm index.php;
 
     server_name _;
 
@@ -17,4 +17,11 @@ server {
     # START: CONFIG_NGINX #
 
     # END: CONFIG_NGINX #
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name; # CONFIG_NGINX_PHP_DEFAULT #
+        include fastcgi_params;
+    }
 }
