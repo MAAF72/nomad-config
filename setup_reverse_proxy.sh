@@ -16,6 +16,7 @@ if test -n "${WEB_APP_DOMAIN-}"; then
 
     sed -i "s!||WEB_APP_PORT||!${WEB_APP_PORT-80}!g" reverse_proxy
 else
+    sed -i "s!||WEB_APP_DOMAIN||!${WEB_APP_DOMAIN-_}!g" reverse_proxy
     sed -i "s!||WEB_APP_PORT||!${WEB_APP_PORT-80} default_server!g" reverse_proxy
 fi
 
