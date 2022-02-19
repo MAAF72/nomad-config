@@ -10,7 +10,7 @@ sed -i "s!||APPLICATION_MAIN_DIR||!${APPLICATION_MAIN_DIR-}!g" nginx_web_config_
 
 # Rewrite web server config
 csplit $WEB_SERVER_DEFAULT_CONFIG '/# START: CONFIG_NGINX #/+1' "/# END: CONFIG_NGINX #/-1"
-sudo cat xx00 nginx_web_config_application xx01 xx02 > $WEB_SERVER_DEFAULT_CONFIG
+cat xx00 nginx_web_config_application xx01 xx02 | sudo tee $WEB_SERVER_DEFAULT_CONFIG
 
 # Restart nginx in container
 
