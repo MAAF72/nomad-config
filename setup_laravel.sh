@@ -1,5 +1,9 @@
 #!/usr/bin/bash
 
+if [ -d "/var/www" ]; then
+    sudo rm -drf /var/www
+fi
+
 composer create-project --prefer-dist laravel/laravel /var/www
 chown -R www-data.www-data /var/www/storage
 chown -R www-data.www-data /var/www/bootstrap/cache
