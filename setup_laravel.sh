@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 if [ -d "/var/www" ]; then
-    sudo rm -drf /var/www
+    rm -drf /var/www
 fi
 
 composer create-project --prefer-dist laravel/laravel /var/www
