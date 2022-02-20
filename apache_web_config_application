@@ -1,0 +1,12 @@
+
+    # START: CONFIG_APACHE_||APPLICATION_ID|| #
+
+    alias /||APPLICATION_NAME|| ||APPLICATION_MAIN_DIR||
+
+    <Directory ||APPLICATION_MAIN_DIR||>
+        <FilesMatch \.php$>
+            SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost" # CONFIG_APACHE_PHP_||APPLICATION_ID|| #
+        </FilesMatch>
+    </Directory>
+
+    # END: CONFIG_APACHE_||APPLICATION_ID|| #
