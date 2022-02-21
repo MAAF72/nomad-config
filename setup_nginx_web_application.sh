@@ -15,5 +15,5 @@ cat xx00 nginx_web_config_application xx01 xx02 | sudo tee $WEB_SERVER_DEFAULT_C
 # Restart nginx in container
 
 # Remove left over files
-rm xx00 xx01 xx02 
-rm nginx_web_config_application
+rm -f xx00 xx01 xx02 
+rm -f nginx_web_config_application

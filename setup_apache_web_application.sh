@@ -15,5 +15,5 @@ cat xx00 apache_web_config_application xx01 xx02 | sudo tee $WEB_SERVER_DEFAULT_
 # Restart apache in container
 
 # Remove left over files
-rm xx00 xx01 xx02 
-rm apache_web_config_application
+rm -f xx00 xx01 xx02 
+rm -f apache_web_config_application

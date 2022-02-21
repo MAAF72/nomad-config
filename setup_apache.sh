@@ -21,5 +21,5 @@ chmod +x setup_reverse_proxy.sh
 ./setup_reverse_proxy.sh
 
 # Remove left over files
-rm apache_web_config
-rm setup_reverse_proxy.sh
+rm -f apache_web_config
+rm -f setup_reverse_proxy.sh
