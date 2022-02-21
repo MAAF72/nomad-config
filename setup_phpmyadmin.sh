@@ -2,10 +2,12 @@
 
 PMA_DIR=/var/www/public/phpmyadmin
 
-if [ ! -d $PMA_DIR ]; then
-    mkdir -p $PMA_DIR
-    composer create-project --no-interaction --prefer-dist phpmyadmin/phpmyadmin /var/www/public/phpmyadmin
+if [ -d $PMA_DIR ]; then
+    rm -drf $PMA_DIR
 fi
+
+mkdir -p $PMA_DIR
+composer create-project --no-interaction --prefer-dist phpmyadmin/phpmyadmin /var/www/public/phpmyadmin
 
 if [ ! -f $PMA_DIR/config.inc.php ]; then
     cp $PMA_DIR/config.sample.inc.php $PMA_DIR/config.inc.php
