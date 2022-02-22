@@ -2,6 +2,7 @@
 
 mkdir -p $WEB_SERVER_DIR/letsencrypt
 mkdir -p $WEB_SERVER_DIR/www/public
+mkdir -p $WEB_SERVER_DIR/sites-available
 
 # Prevent default file created as folder
 if test -d "$WEB_SERVER_DIR/sites-available/default"; then
