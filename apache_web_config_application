@@ -4,11 +4,12 @@
     alias /||APPLICATION_NAME|| ||APPLICATION_MAIN_DIR||
 
     <Directory ||APPLICATION_MAIN_DIR||>
+        AllowOverride All
         <FilesMatch \.php$>
             # START: CONFIG_APACHE_PHP_||APPLICATION_ID|| #
 
             SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost" 
-            
+
             # END: CONFIG_APACHE_PHP_||APPLICATION_ID|| #
         </FilesMatch>
     </Directory>

@@ -8,7 +8,7 @@
             # START: CONFIG_APACHE_PHP_DEFAULT #
 
             SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost" 
-            
+
             # END: CONFIG_APACHE_PHP_DEFAULT #
         </FilesMatch>
     </Directory>

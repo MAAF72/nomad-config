@@ -1,0 +1,230 @@
+# DONT EDIT NOR DELETE ANY COMMENT HERE #
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/public;
+
+    index index.html index.htm;
+
+    server_name _;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    
+    # START: CONFIG_NGINX #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # START: CONFIG_NGINX_00001 #
+
+    location /app1 {
+        alias /home/workspace/www/app1;
+        
+        try_files $uri $uri/ @app1;
+
+        location ~ \.php$ {
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock; # CONFIG_NGINX_PHP_00001 #
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
+    }
+
+    location @app1 {
+        rewrite /app1/(.*)$ /app1/index.php?/$1 last;
+    }
+
+    # END: CONFIG_NGINX_00001 #
+
+    # END: CONFIG_NGINX #
+}
