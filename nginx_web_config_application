@@ -7,9 +7,9 @@
         try_files $uri $uri/ @||APPLICATION_NAME||;
 
         location ~ \.php$ {
-            # END: CONFIG_NGINX_PHP_DEFAULT #
+            # START: CONFIG_NGINX_PHP_||APPLICATION_ID|| #
             fastcgi_pass     unix:/var/run/php/php7.4-fpm.sock;
-            # CONFIG_NGINX_PHP_||APPLICATION_ID|| #
+            # END: CONFIG_NGINX_PHP_||APPLICATION_ID|| #
             fastcgi_index    index.php;
             fastcgi_param    SCRIPT_FILENAME $request_filename;
             include          fastcgi_params;
