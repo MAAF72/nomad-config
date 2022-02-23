@@ -16,7 +16,7 @@ elif ( test "${WEB_SERVER-}" = "APACHE" ); then
 
     sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
     sed -i 's!SetHandler\s*".*"!'"$PHP_HANDLER"'!g' xx01
-    cat xx00 xx01 xx02 | sudo $WEB_SERVER_DEFAULT_CONFIG
+    cat xx00 xx01 xx02 | sudo tee $WEB_SERVER_DEFAULT_CONFIG
     rm -f xx00 xx01 xx02
 else
     echo "WEB SERVER : ${WEB_SERVER-} , IS NOT SUPPORTED!"
