@@ -23,11 +23,15 @@ while True:
         'status': enum['success'] if args.exit_code == 0 else enum['failed']
     }
     
-    resp = requests.post(args.endpoint, json=body)
+    try:
+        resp = requests.post(args.endpoint, json=body)
 
-    if resp.ok:
-        print(f'SUCCESS {current_time} => {resp.json()}')
-        break
-    else:
-        print(f'FAILED {current_time} => {resp.json()}')
-        time.sleep(2 * 60) # Sleep for 2 minutes
+        if resp.ok:
+            print(f'SUCCESS {current_time} => {resp.json()}')
+            break
+        else:
+            print(f'FAILED {current_time} => Status Code {resp.status_code)}')
+    except Exception as e:
+        print(f'ERROR {current_time} => {e}')
+        
+    time.sleep(2 * 60) # Sleep for 2 minutes
