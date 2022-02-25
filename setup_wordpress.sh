@@ -41,6 +41,3 @@ cp -a wordpress/. $APPLICATION_DIR/public
 cd $APPLICATION_DIR
 
 rm -rf wordpress_tmp
-sudo chown -R www-data:www-data $APPLICATION_DIR
-sudo find $APPLICATION_DIR -type d -exec chmod 750 {} \;
-sudo find $APPLICATION_DIR -type f -exec chmod 640 {} \;

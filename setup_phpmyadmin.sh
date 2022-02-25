@@ -7,7 +7,7 @@ if [ -d $PMA_DIR ]; then
 fi
 
 mkdir -p $PMA_DIR
-composer create-project --no-interaction --prefer-dist phpmyadmin/phpmyadmin /var/www/public/phpmyadmin
+composer create-project --no-interaction --prefer-dist phpmyadmin/phpmyadmin $PMA_DIR
 
 if [ ! -f $PMA_DIR/config.inc.php ]; then
     cp $PMA_DIR/config.sample.inc.php $PMA_DIR/config.inc.php
@@ -17,6 +17,10 @@ if [ ! -f $PMA_DIR/config.inc.php ]; then
     if test -n "${PROXY_ADDRESS-}"; then
         sed -i "s/localhost/$PROXY_ADDRESS/g" $PMA_DIR/config.inc.php
     fi
+fi
+
+if [ -d "$PMA_DIR" ]; then
+    sudo chown -R www-data:www-data $PMA_DIR
 fi
 
 rm -f /var/tmp/setup_phpmyadmin.sh

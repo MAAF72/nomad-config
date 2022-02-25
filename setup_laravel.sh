@@ -5,8 +5,6 @@ if [ -d "/var/www" ]; then
 fi
 
 composer create-project --prefer-dist laravel/laravel /var/www
-chown -R www-data.www-data /var/www/storage
-chown -R www-data.www-data /var/www/bootstrap/cache
 
 sed -i "s/^APP_NAME=.*/APP_NAME=\"${LARAVEL_APP_NAME-Laravel}\"/g" /var/www/.env
 sed -i "s/^APP_ENV=.*/APP_ENV=${LARAVEL_APP_ENV-local}/g" /var/www/.env

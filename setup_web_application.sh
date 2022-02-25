@@ -11,3 +11,9 @@ elif ( test "${WEB_SERVER-}" = "APACHE" ); then
 else
     echo "WEB SERVER : ${WEB_SERVER-} , IS NOT SUPPORTED!"
 fi
+
+if [ -d "$APPLICATION_DIR" ]; then
+    sudo chown -R www-data:www-data $APPLICATION_DIR
+    sudo find $APPLICATION_DIR -type d -exec chmod 750 {} \;
+    sudo find $APPLICATION_DIR -type f -exec chmod 640 {} \;
+fi
