@@ -30,7 +30,7 @@ while True:
             print(f'SUCCESS {current_time} => {resp.json()}')
             break
         else:
-            print(f'FAILED {current_time} => Status Code {resp.status_code)}')
+            print(f'FAILED {current_time} => Status Code {resp.status_code}')
     except Exception as e:
         print(f'ERROR {current_time} => {e}')
         
