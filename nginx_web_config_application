@@ -2,7 +2,7 @@
     # START: CONFIG_NGINX_||APPLICATION_ID|| #
 
     location /||APPLICATION_NAME|| {
-        alias ||APPLICATION_MAIN_DIR||;
+        alias ||APPLICATION_MAIN_DIR_CONTAINER||;
         
         try_files $uri $uri/ @||APPLICATION_NAME||;
 

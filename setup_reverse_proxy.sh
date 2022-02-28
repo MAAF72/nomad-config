@@ -20,15 +20,15 @@ else
     sed -i "s!||WEB_APP_PORT||!${WEB_APP_PORT-80} default_server!g" reverse_proxy
 fi
 
-if test -n "${APPLICATION_DIR-}"; then
-    sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/${APPLICATION_DIR-}/!g" reverse_proxy
+if test -n "${APPLICATION_NAME-}"; then
+    sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/${APPLICATION_NAME-}/!g" reverse_proxy
     sed -i "s!||ENABLE_PROXY_REDIRECT||!!g" reverse_proxy
 else
     sed -i "s!||PROXY_ADDRESS_PORT||!http://${PROXY_ADDRESS-127.0.0.1}:${PROXY_PORT-80}/!g" reverse_proxy
     sed -i "s!||ENABLE_PROXY_REDIRECT||!# !g" reverse_proxy
 fi
 
-sed -i "s!||APPLICATION_DIR||!${APPLICATION_DIR-}!g" reverse_proxy
+sed -i "s!||APPLICATION_NAME||!${APPLICATION_NAME-}!g" reverse_proxy
 
 if test -f "/etc/nginx/sites-enabled/default"; then
     sudo rm -f /etc/nginx/sites-enabled/default

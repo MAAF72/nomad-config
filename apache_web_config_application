@@ -1,9 +1,9 @@
 
     # START: CONFIG_APACHE_||APPLICATION_ID|| #
 
-    alias /||APPLICATION_NAME|| ||APPLICATION_MAIN_DIR||
+    alias /||APPLICATION_NAME|| ||APPLICATION_MAIN_DIR_CONTAINER||
 
-    <Directory ||APPLICATION_MAIN_DIR||>
+    <Directory ||APPLICATION_MAIN_DIR_CONTAINER||>
         AllowOverride All
         <FilesMatch \.php$>
             # START: CONFIG_APACHE_PHP_||APPLICATION_ID|| #
