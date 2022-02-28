@@ -1,11 +1,15 @@
 #!/usr/bin/bash
 
+if [ -d "$FM_DIR" ]; then
+    sudo rm -drf $FM_DIR
+fi
+
 mkdir -p $FM_DIR
 
 cd $FM_DIR
 
-curl -fksSL https://raw.githubusercontent.com/MAAF72/nomad-config/master/file-manager/index.php
-curl -fksSL https://raw.githubusercontent.com/MAAF72/nomad-config/master/file-manager/translation.json
+curl -fksSL https://raw.githubusercontent.com/MAAF72/nomad-config/master/file-manager/index.php -o index.php
+curl -fksSL https://raw.githubusercontent.com/MAAF72/nomad-config/master/file-manager/translation.json -o translation.json
 
 # Do sed for admin creds
 START="# START: FILE_MANAGER_ADMIN_CREDENTIAL #"
