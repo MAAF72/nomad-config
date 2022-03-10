@@ -3,7 +3,7 @@
 
     location /||APPLICATION_NAME|| {
         # START: CONFIG_NGINX_CLIENT_MAX_BODY_SIZE_|APPLICATION_ID|| #
-        client_max_body_size ||NGINX_CLIENT_MAX_BODY_SIZE||;
+        client_max_body_size ||NGINX_CLIENT_MAX_BODY_SIZE||M;
         # END: CONFIG_NGINX_CLIENT_MAX_BODY_SIZE_||APPLICATION_ID|| #
 
         alias ||APPLICATION_MAIN_DIR_CONTAINER||;

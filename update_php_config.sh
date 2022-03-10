@@ -8,7 +8,7 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
     if ( test "${WEB_SERVER-}" = "NGINX" ); then
         START="# START: CONFIG_NGINX_CLIENT_MAX_BODY_SIZE_${APPLICATION_ID-DEFAULT} #"
         END="# END: CONFIG_NGINX_CLIENT_MAX_BODY_SIZE_${APPLICATION_ID-DEFAULT} #"
-        CONFIG_HANDLER="client_max_body_size $NGINX_CLIENT_MAX_BODY_SIZE;"
+        CONFIG_HANDLER="client_max_body_size ${NGINX_CLIENT_MAX_BODY_SIZE}M;"
 
         sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
         sed -i 's!client_max_body_size\s*.*;!'"$CONFIG_HANDLER"'!g' xx01
@@ -17,7 +17,7 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
     elif ( test "${WEB_SERVER-}" = "APACHE" ); then
         START="# START: CONFIG_APACHE_LIMIT_REQUEST_BODY_${APPLICATION_ID-DEFAULT} #"
         END="# END: CONFIG_APACHE_LIMIT_REQUEST_BODY_${APPLICATION_ID-DEFAULT} #"
-        CONFIG_HANDLER="LimitRequestBody $APACHE_LIMIT_REQUEST_BODY;"
+        CONFIG_HANDLER="LimitRequestBody ${APACHE_LIMIT_REQUEST_BODY}M;"
 
         sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
         sed -i 's!LimitRequestBody\s*.*;!'"$CONFIG_HANDLER"'!g' xx01
