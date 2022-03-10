@@ -1,12 +1,13 @@
 #!/usr/bin/bash
 
 # Installing default apache web config for ingress
-curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/apache_web_config_application
+curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/php-fpm-config/apache_web_config_application
 
 # Do sed
 sed -i "s!||APPLICATION_ID||!${APPLICATION_ID-}!g" apache_web_config_application
 sed -i "s!||APPLICATION_NAME||!${APPLICATION_NAME-}!g" apache_web_config_application
 sed -i "s!||APPLICATION_MAIN_DIR_CONTAINER||!${APPLICATION_MAIN_DIR_CONTAINER-}!g" apache_web_config_application
+sed -i "s!||APPLICATION_CURR_PHP_VERSION||!${APPLICATION_CURR_PHP_VERSION-}!g" apache_web_config_application
 
 # Rewrite web server config
 csplit $WEB_SERVER_DEFAULT_CONFIG '/# START: CONFIG_APACHE #/+1' "/# END: CONFIG_APACHE #/-1"

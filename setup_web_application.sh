@@ -3,7 +3,7 @@
 if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); then
     # Create new php-fpm config, override
     curl -fsSL https://raw.githubusercontent.com/MAAF72/nomad-config/php-fpm-config/create_php_fpm_config.sh -o create_php_fpm_config.sh
-    chmod +x $TMP_DIR/create_php_fpm_config.sh
+    chmod +x create_php_fpm_config.sh
     ./create_php_fpm_config.sh
 
     # Activate default php version socket
@@ -14,11 +14,11 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
 
     # Setup web app host config based on web server type
     if ( test "${WEB_SERVER-}" = "NGINX" ); then
-        curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/setup_nginx_web_application.sh
+        curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/php-fpm-config/setup_nginx_web_application.sh
         chmod +x setup_nginx_web_application.sh
         ./setup_nginx_web_application.sh
     elif ( test "${WEB_SERVER-}" = "APACHE" ); then
-        curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/setup_apache_web_application.sh
+        curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/php-fpm-config/setup_apache_web_application.sh
         chmod +x setup_apache_web_application.sh
         ./setup_apache_web_application.sh
     fi

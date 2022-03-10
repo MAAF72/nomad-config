@@ -11,12 +11,12 @@ fi
 
 # Installing default nginx web config for container
 if ! test -f "$WEB_SERVER_DIR/sites-available/default"; then
-    curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/nginx_web_config
+    curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/php-fpm-config/nginx_web_config
     sudo cp nginx_web_config $WEB_SERVER_DIR/sites-available/default
 fi
 
 # Installing default nginx web config for ingress
-curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/setup_reverse_proxy.sh
+curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/php-fpm-config/setup_reverse_proxy.sh
 
 chmod +x setup_reverse_proxy.sh
 ./setup_reverse_proxy.sh
