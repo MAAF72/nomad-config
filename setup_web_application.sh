@@ -8,7 +8,7 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
 
     # Activate default php version socket
     CURR_PHP_VERSION_SOCKET_CONFIG=$PAAS_PHP_CONFIG_DIR/$APPLICATION_CURR_PHP_VERSION/$APPLICATION_ID.conf
-    if ! test -f "$CURR_PHP_VERSION_SOCKET_CONFIG.disabled"; then
+    if test -f "$CURR_PHP_VERSION_SOCKET_CONFIG.disabled"; then
         sudo mv $CURR_PHP_VERSION_SOCKET_CONFIG.disabled $CURR_PHP_VERSION_SOCKET_CONFIG
     fi
 
