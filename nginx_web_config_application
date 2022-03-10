@@ -8,7 +8,7 @@
 
         location ~ \.php$ {
             # START: CONFIG_NGINX_PHP_||APPLICATION_ID|| #
-            fastcgi_pass     unix:/var/run/php/php7.4-fpm.sock;
+            fastcgi_pass     unix:/var/run/php/||APPLICATION_ID||_||APPLICATION_CURR_PHP_VERSION||.sock;
             # END: CONFIG_NGINX_PHP_||APPLICATION_ID|| #
             fastcgi_index    index.php;
             fastcgi_param    SCRIPT_FILENAME $request_filename;
