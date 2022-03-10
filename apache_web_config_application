@@ -4,6 +4,10 @@
     alias /||APPLICATION_NAME|| ||APPLICATION_MAIN_DIR_CONTAINER||
 
     <Directory ||APPLICATION_MAIN_DIR_CONTAINER||>
+        # START: CONFIG_APACHE_LIMIT_REQUEST_BODY_|APPLICATION_ID|| #
+        LimitRequestBody  ||APACHE_LIMIT_REQUEST_BODY||;
+        # END: CONFIG_APACHE_LIMIT_REQUEST_BODY_||APPLICATION_ID|| #
+
         AllowOverride All
         <FilesMatch \.php$>
             # START: CONFIG_APACHE_PHP_||APPLICATION_ID|| #

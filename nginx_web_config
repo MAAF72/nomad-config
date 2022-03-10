@@ -19,11 +19,11 @@ server {
     # END: CONFIG_NGINX #
 
     location ~ \.php$ {
+        include          fastcgi_params;
         # START: CONFIG_NGINX_PHP_DEFAULT #
         fastcgi_pass     unix:/var/run/php/php7.4-fpm.sock;
         # END: CONFIG_NGINX_PHP_DEFAULT #
         fastcgi_index    index.php;
         fastcgi_param    SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        include          fastcgi_params;
     }
 }

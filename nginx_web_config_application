@@ -2,17 +2,21 @@
     # START: CONFIG_NGINX_||APPLICATION_ID|| #
 
     location /||APPLICATION_NAME|| {
+        # START: CONFIG_NGINX_CLIENT_MAX_BODY_SIZE_|APPLICATION_ID|| #
+        client_max_body_size ||NGINX_CLIENT_MAX_BODY_SIZE||;
+        # END: CONFIG_NGINX_CLIENT_MAX_BODY_SIZE_||APPLICATION_ID|| #
+
         alias ||APPLICATION_MAIN_DIR_CONTAINER||;
         
         try_files $uri $uri/ @||APPLICATION_NAME||;
 
         location ~ \.php$ {
+            include          fastcgi_params;
             # START: CONFIG_NGINX_PHP_||APPLICATION_ID|| #
             fastcgi_pass     unix:/var/run/php/||APPLICATION_ID||_||APPLICATION_CURR_PHP_VERSION||.sock;
             # END: CONFIG_NGINX_PHP_||APPLICATION_ID|| #
             fastcgi_index    index.php;
             fastcgi_param    SCRIPT_FILENAME $request_filename;
-            include          fastcgi_params;
         }
     }
 
