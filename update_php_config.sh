@@ -17,10 +17,11 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
     elif ( test "${WEB_SERVER-}" = "APACHE" ); then
         START="# START: CONFIG_APACHE_LIMIT_REQUEST_BODY_$APPLICATION_ID #"
         END="# END: CONFIG_APACHE_LIMIT_REQUEST_BODY_$APPLICATION_ID #"
-        CONFIG_HANDLER="LimitRequestBody ${APACHE_LIMIT_REQUEST_BODY}M;"
+        BYTES_APACHE_LIMIT_REQUEST_BODY=$((APACHE_LIMIT_REQUEST_BODY * 1024 * 1024))
+        CONFIG_HANDLER="LimitRequestBody $BYTES_APACHE_LIMIT_REQUEST_BODY"
 
         sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
-        sed -i 's!LimitRequestBody\s*.*;!'"$CONFIG_HANDLER"'!g' xx01
+        sed -i 's!LimitRequestBody\s*.*$!'"$CONFIG_HANDLER"'!g' xx01
         cat xx00 xx01 xx02 | sudo tee $WEB_SERVER_DEFAULT_CONFIG
         rm -f xx00 xx01 xx02
     fi
