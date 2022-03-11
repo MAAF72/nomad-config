@@ -5,7 +5,7 @@
 
     <Directory ||APPLICATION_MAIN_DIR_CONTAINER||>
         # START: CONFIG_APACHE_LIMIT_REQUEST_BODY_|APPLICATION_ID|| #
-        LimitRequestBody  ||APACHE_LIMIT_REQUEST_BODY||M;
+        LimitRequestBody ||APACHE_LIMIT_REQUEST_BODY||M;
         # END: CONFIG_APACHE_LIMIT_REQUEST_BODY_||APPLICATION_ID|| #
 
         AllowOverride All
