@@ -33,7 +33,7 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
     elif ( test "${WEB_SERVER-}" = "APACHE" ); then
         START="# START: CONFIG_APACHE_PHP_${APPLICATION_ID-DEFAULT} #"
         END="# END: CONFIG_APACHE_PHP_${APPLICATION_ID-DEFAULT} #"
-        PHP_HANDLER='SetHandler "proxy:unix:/var/run/php/php'"${APPLICATION_ID}_${APPLICATION_CURR_PHP_VERSION}"'.sock|fcgi://localhost"'
+        PHP_HANDLER='SetHandler "proxy:unix:/var/run/php/'"${APPLICATION_ID}_${APPLICATION_CURR_PHP_VERSION}"'.sock|fcgi://localhost"'
 
         sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
         sed -i 's!SetHandler\s*".*"!'"$PHP_HANDLER"'!g' xx01
