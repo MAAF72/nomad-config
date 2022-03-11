@@ -12,19 +12,19 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
 
     # Disable prev php version socket if exist
     PREV_PHP_VERSION_SOCKET_CONFIG=$PAAS_PHP_CONFIG_DIR/$APPLICATION_PREV_PHP_VERSION/$APPLICATION_ID.conf
-    if ! test -f "$PREV_PHP_VERSION_SOCKET_CONFIG"; then
+    if test -f "$PREV_PHP_VERSION_SOCKET_CONFIG"; then
         sudo mv $PREV_PHP_VERSION_SOCKET_CONFIG $PREV_PHP_VERSION_SOCKET_CONFIG.disabled
     fi
 
     # Enable curr php version socket
-    if ! test -f "$CURR_PHP_VERSION_SOCKET_CONFIG.disabled"; then
+    if test -f "$CURR_PHP_VERSION_SOCKET_CONFIG.disabled"; then
         sudo mv $CURR_PHP_VERSION_SOCKET_CONFIG.disabled $CURR_PHP_VERSION_SOCKET_CONFIG
     fi
 
     if ( test "${WEB_SERVER-}" = "NGINX" ); then
         START="# START: CONFIG_NGINX_PHP_${APPLICATION_ID-DEFAULT} #"
         END="# END: CONFIG_NGINX_PHP_${APPLICATION_ID-DEFAULT} #"
-        PHP_HANDLER="fastcgi_pass     unix:/var/run/php/$APPLICATION_ID-$APPLICATION_CURR_PHP_VERSION.sock;"
+        PHP_HANDLER="fastcgi_pass     unix:/var/run/php/${APPLICATION_ID}_${APPLICATION_CURR_PHP_VERSION}.sock;"
 
         sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
         sed -i 's!fastcgi_pass\s*.*;!'"$PHP_HANDLER"'!g' xx01
@@ -33,7 +33,7 @@ if ( test "${WEB_SERVER-}" = "NGINX" ) || ( test "${WEB_SERVER-}" = "APACHE" ); 
     elif ( test "${WEB_SERVER-}" = "APACHE" ); then
         START="# START: CONFIG_APACHE_PHP_${APPLICATION_ID-DEFAULT} #"
         END="# END: CONFIG_APACHE_PHP_${APPLICATION_ID-DEFAULT} #"
-        PHP_HANDLER='SetHandler "proxy:unix:/var/run/php/php'"$APPLICATION_ID-$APPLICATION_CURR_PHP_VERSION"'.sock|fcgi://localhost"'
+        PHP_HANDLER='SetHandler "proxy:unix:/var/run/php/php'"${APPLICATION_ID}_${APPLICATION_CURR_PHP_VERSION}"'.sock|fcgi://localhost"'
 
         sudo csplit $WEB_SERVER_DEFAULT_CONFIG '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
         sed -i 's!SetHandler\s*".*"!'"$PHP_HANDLER"'!g' xx01
