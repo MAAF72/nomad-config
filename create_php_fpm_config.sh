@@ -15,7 +15,7 @@ sed -i "s!||FPM_MAX_SPARE_SERVERS||!${FPM_MAX_SPARE_SERVERS-3}!g" pool_sub.conf
 
 DEFAULT_PHP_DISABLE_FUNCTIONS="exec,passthru,shell_exec,system"
 
-sed -i "s!||PHP_DISABLE_FUNCTIONS||!${PHP_DISABLE_FUNCTIONS:-$DEFAULT_PHP_DISABLE_FUNCTIONS}!g" pool_sub.conf
+sed -i "s!||PHP_DISABLE_FUNCTIONS||!${PHP_DISABLE_FUNCTIONS-$DEFAULT_PHP_DISABLE_FUNCTIONS}!g" pool_sub.conf
 sed -i "s!||PHP_MAX_EXECUTION_TIME||!${PHP_MAX_EXECUTION_TIME-30}!g" pool_sub.conf
 sed -i "s!||PHP_MAX_INPUT_TIME||!${PHP_MAX_INPUT_TIME-60}!g" pool_sub.conf
 sed -i "s!||PHP_MAX_INPUT_VARS||!${PHP_MAX_INPUT_VARS-1000}!g" pool_sub.conf
