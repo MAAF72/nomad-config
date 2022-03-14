@@ -21,6 +21,6 @@ if [ ! -f $PMA_DIR/config.inc.php ]; then
     fi
 fi
 
-chown -R www-data:www-data $PMA_DIR
+# chown -R www-data:www-data $PMA_DIR
 
 rm -f /var/tmp/setup_phpmyadmin.sh

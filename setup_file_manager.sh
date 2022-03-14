@@ -21,6 +21,6 @@ sudo csplit index.php '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
 
 rm -f xx00 xx01 xx02
 
-if [ -d "$FM_DIR" ]; then
-    sudo chown -R www-data:www-data $FM_DIR
-fi
+# if [ -d "$FM_DIR" ]; then
+#     sudo chown -R www-data:www-data $FM_DIR
+# fi
