@@ -4,7 +4,7 @@ DEFAULT_CFG_NAME=rp_${APPLICATION_ID--}_-
 CFG_NAME=rp_${APPLICATION_ID--}_${WEB_APP_DOMAIN--}
 
 sudo ufw allow ${WEB_APP_PORT-80}/tcp
-curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/reverse_proxy
+curl --silent --remote-name ${STATIC_URL}/ingress/reverse_proxy
 
 
 if test -n "${WEB_APP_DOMAIN-}"; then

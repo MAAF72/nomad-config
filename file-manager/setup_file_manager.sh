@@ -8,8 +8,8 @@ mkdir -p $FM_DIR
 
 cd $FM_DIR
 
-curl -fksSL https://raw.githubusercontent.com/MAAF72/nomad-config/master/file-manager/index.php -o index.php
-curl -fksSL https://raw.githubusercontent.com/MAAF72/nomad-config/master/file-manager/translation.json -o translation.json
+curl -fksSL ${STATIC_URL}/file-manager/index.php -o index.php
+curl -fksSL ${STATIC_URL}/file-manager/translation.json -o translation.json
 
 # Do sed for admin creds
 START="# START: FILE_MANAGER_ADMIN_CREDENTIAL #"
@@ -21,6 +21,6 @@ sudo csplit index.php '/'"$START"'/+1' '/'"$END"'/' &>/dev/null
 
 rm -f xx00 xx01 xx02
 
-if [ -d "$FM_DIR" ]; then
-    sudo chown -R www-data:www-data $FM_DIR
-fi
+# if [ -d "$FM_DIR" ]; then
+#     sudo chown -R www-data:www-data $FM_DIR
+# fi

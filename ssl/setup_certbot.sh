@@ -2,7 +2,7 @@
 
 CB_CFG_FILE=/etc/letsencrypt/renewal/$WEB_APP_DOMAIN.conf
 
-curl --silent --remote-name https://raw.githubusercontent.com/MAAF72/nomad-config/master/create-ssl-log.py
+curl --silent --remote-name ${STATIC_URL}/ssl/create-ssl-log.py
 
 DOMAIN_LIST=$WEB_APP_DOMAIN
 if test "${ENABLE_WWW-false}" = true; then

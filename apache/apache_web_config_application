@@ -4,10 +4,14 @@
     alias /||APPLICATION_NAME|| ||APPLICATION_MAIN_DIR_CONTAINER||
 
     <Directory ||APPLICATION_MAIN_DIR_CONTAINER||>
+        # START: CONFIG_APACHE_LIMIT_REQUEST_BODY_||APPLICATION_ID|| #
+        LimitRequestBody 268435456
+        # END: CONFIG_APACHE_LIMIT_REQUEST_BODY_||APPLICATION_ID|| #
+
         AllowOverride All
         <FilesMatch \.php$>
             # START: CONFIG_APACHE_PHP_||APPLICATION_ID|| #
-            SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost" 
+            SetHandler "proxy:unix:/var/run/php/||APPLICATION_ID||_||APPLICATION_CURR_PHP_VERSION||.sock|fcgi://localhost" 
             # END: CONFIG_APACHE_PHP_||APPLICATION_ID|| #
         </FilesMatch>
     </Directory>
